@@ -1,0 +1,8 @@
+app_id: ar-dashboard
+name: B2B Finance Dashboard
+description: Real-time customer billing status - AR, collections, revenue recognition
+tags:
+  - finance
+resources:
+  memory: 256Mi
+  max_instances: 3
