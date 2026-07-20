@@ -1634,7 +1634,7 @@
 <div id="page-whats-next" class="page">
   <div class="ph">
     <div class="pt">What's Next</div>
-    <div class="pm"><span class="tag tgray">Action items &amp; Slack digest · Jun 2026</span></div>
+    <div class="pm"><span class="tag tgray">Action items &amp; Slack digest · Jul 2026</span></div>
   </div>
 
   <!-- Saved items -->
@@ -1644,7 +1644,7 @@
   </div>
 
   <!-- Upcoming actions -->
-  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:8px">🚀 Upcoming — June 2026</div>
+  <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:8px">🚀 Priority Actions</div>
   <div id="wn-actions" style="display:flex;flex-direction:column;gap:10px;margin-bottom:28px"></div>
 
   <!-- Slack digest -->
@@ -1660,7 +1660,7 @@
   </div>
   <div class="ph">
     <div class="pt">Receivables</div>
-    <div class="pm"><span class="tag tgray">Open &amp; Overdue · as of May 2026</span></div>
+    <div class="pm"><span class="tag tgray">Open &amp; Overdue · as of 19/07/2026</span></div>
   </div>
 
   <!-- KPI strip -->
@@ -3213,14 +3213,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ── What's Next ────────────────────────────────────────────────────────────────
 const WN_ACTIONS = [
-  { id:'alm-jun-ship',   customer:'ALM',     urgency:'high',   title:'Ship 800 × Beam4 units',      body:'Scheduled Jun 3 2026. Issue 70% balance invoice ($655,011) upon shipment. Tax: 8.875% NY.', tag:'Shipment + Invoice' },
-  { id:'metakol-jun-po6',customer:'Metakol', urgency:'high',   title:'Ship PO6 — 1,000 N1 units',    body:'Jun 2026 delivery. Confirm Aoni production completion. Issue invoice in EUR upon ship.', tag:'Shipment' },
-  { id:'acko-jun-ship',  customer:'Acko LTD',urgency:'medium', title:'Ship 10,000 units (Pico + B2M + B4)', body:'Jun 2026 target. Confirm BIS certification status and Aoni readiness before issuing invoice.', tag:'Shipment + Invoice' },
+  { id:'axon-q2-overdue',  customer:'Axon',    urgency:'high',   title:'Q2 invoice 8 days overdue — no payment confirmation', body:'SI266000045 ($625,000) due 11/07/26, now 8+ days late. Nothing found in Slack confirming payment as of the last weekly check — follow up with Axon contact.', tag:'Receivables' },
+  { id:'alm-new-invoice',  customer:'ALM',     urgency:'high',   title:'New $314,463.66 invoice, already 12 days overdue',    body:'SI266000067 appeared in the 07/19 Priority export — wasn\'t previously tracked. Confirm this was actually sent/expected before chasing payment.', tag:'Receivables' },
+  { id:'metakol-plan',     customer:'Metakol', urgency:'high',   title:'Payment plan committed — formal doc expected',        body:'Per #sales-metakol (7/16): Metakol committed to $50K "next week" (as of 7/15) + current balance within 30 days (~Aug 15) on the ~€330K PO6 balance. Formal plan doc was expected by Fri 7/17 — confirm it arrived.', tag:'Shipment + Payment plan' },
+  { id:'acko-new-invoice', customer:'Acko LTD',urgency:'medium', title:'New $349,600 invoice issued (SI266000015)',           body:'Not yet due (07/31/26). Confirm this matches the shipment/contract terms under the ongoing B4 SD card re-negotiation.', tag:'Shipment + Invoice' },
+  { id:'gocab-unpaid',     customer:'Gocab',   urgency:'medium', title:'No payment received since March — 5 months behind',  body:'$2,001/mo owed for Mar–Jul 2026 (~$10,005 total). No Gocab-related transaction found in Chase data through mid-July.', tag:'Receivables' },
 ];
 
 const WN_DIGEST = [
-  { id:'flywheel-raise',  customer:'Flywheel',   title:'Capital raise in progress — B4 order pending', body:'Izzy expects raise to close within 30 days. 3K–10K Beam4 PO expected after close. Mexico pilot scaling Quintana Roo → Merida → CDMX.', tag:'#sales-flywheel' },
-  { id:'metakol-payment', customer:'Metakol',    title:'Payment expected — ADJ credit still open',     body:'Andrea confirmed payment imminent. ADJ/May26 credit (-€64,418) offset against SI266000016. PO6 shipment dependent on payment.', tag:'#sales-metakol' },
+  { id:'flywheel-raise',  customer:'Flywheel',   title:'Capital raise in progress — B4 order pending', body:'Izzy expects raise to close within 30 days. 3K–10K Beam4 PO expected after close. Mexico pilot scaling Quintana Roo → Merida → CDMX. Separately: $30K wire received 07/10 (via CABCONNECT INC) plus a new $7,889.39 interest charge invoiced (SI266000065).', tag:'#sales-flywheel' },
+  { id:'metakol-payment', customer:'Metakol',    title:'$50K partial payment + formal plan — balance still open', body:'Per 7/16 Slack recap: $50K "next week" (as of 7/15) + current within 30 days (~Aug 15) on the ~€330K PO6 balance; formal plan doc expected Fri 7/17. Mark also asked (7/16) for an updated balance in a specific format — Nofar\'s reply said she was still waiting on sheet access, so that reply may be outstanding.', tag:'#sales-metakol' },
   { id:'vgm-acquisition', customer:'VGM',        title:'Company acquisition in progress',              body:'Being acquired by a company specialised in government fleet (NYC MTA). Jeremy & Dave staying on. Intention to expand Nexar relationship.', tag:'#sales-voyagerglobalmobility' },
   { id:'nuro-commercial', customer:'Nuro.AI',    title:'Commercial negotiation — weekly cadence',      body:'Joel Gaspar agreed to commercial parallel track. Anil narrowed scope to 4 priority scene types. Volume + term length are Nexar\'s levers.', tag:'#sales-nuro-ai' },
   { id:'compasscom-b4',   customer:'CompassCom', title:'Requesting updated Beam4 reseller pricing',    body:'CompassCom held on HWK pricing. Shaya drafting B4 quote. IDOT cameras deployed — maintenance fee to be discussed.', tag:'#sales-compasscom' },
@@ -3230,7 +3232,7 @@ const WN_DIGEST = [
 
 function wnCard(item, isSaved) {
   const urgencyColor = item.urgency === 'high' ? '#ef4444' : item.urgency === 'medium' ? '#f59e0b' : 'var(--accent)';
-  const custColor = {'ALM':'var(--green)','Metakol':'#b45309','Acko LTD':'#0f766e','Flywheel':'#c2410c','VGM':'#be185d','Nuro.AI':'#2563eb','CompassCom':'#0369a1','Vay':'#0891b2','Acko':'#0f766e'}[item.customer] || 'var(--muted)';
+  const custColor = {'ALM':'var(--green)','Metakol':'#b45309','Acko LTD':'#0f766e','Flywheel':'#c2410c','VGM':'#be185d','Nuro.AI':'#2563eb','CompassCom':'#0369a1','Vay':'#0891b2','Acko':'#0f766e','Axon':'#7c3aed','Gocab':'#6b7280'}[item.customer] || 'var(--muted)';
   return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:14px 16px;display:flex;gap:14px;align-items:flex-start">
     <div style="flex:1">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
