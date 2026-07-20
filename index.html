@@ -2495,75 +2495,74 @@ function invLink(inv) {
 }
 
 const AR_DATA = [
-  // ── as of 11/07/2026 · Chase top priority, open invoices file second ──────
-  // Metakol (EUR) — subscription invoices Oct25–Jun26 (SI256000067/084/105, SI266000004/018/029/039/056/063)
-  // reconciled 29/06/26 against €26,189.71 payment (Priority acct 8056); €4,797.79 remains unreconciled
-  {c:'Metakol',              inv:'Recon/Jun26',  idate:'29/06/26', due:'29/06/26', days:16,  amt:4797.79,    curr:'EUR'},
-  {c:'Metakol',              inv:'SI266000031', idate:'31/03/26', due:'30/04/26', days:72,  amt:330000.00,  curr:'EUR'},
-  // Motional — SI256000045 paid 18/06 via Chase
-  {c:'Motional AD',          inv:'SI266000025', idate:'31/03/26', due:'30/04/26', days:72,  amt:1594.50,    curr:'USD'},
-  // Motional — new June invoice
+  // ── as of 19/07/2026 · refreshed directly from Priority "inc/ltd open invoices" exports ──────
+  // ALM — NEW: large multi-shipment invoice, not previously tracked (supersedes old $280,719 credit, no longer in Priority export)
+  {c:'ALM',                  inv:'SI266000067', idate:'07/07/26', due:'07/07/26', days:12,  amt:314463.66,  curr:'USD'},
+  // Metakol (EUR)
+  {c:'Metakol',              inv:'SI266000031', idate:'31/03/26', due:'30/04/26', days:80,  amt:330000.00,  curr:'EUR'},
+  {c:'Metakol',              inv:'SI266000063', idate:'30/06/26', due:'30/07/26', days:0,   amt:4377.00,    curr:'EUR'},
+  // Motional AD
+  {c:'Motional AD',          inv:'SI266000025', idate:'31/03/26', due:'30/04/26', days:80,  amt:1594.50,    curr:'USD'},
   {c:'Motional AD',          inv:'SI266000061', idate:'30/06/26', due:'30/07/26', days:0,   amt:1594.50,    curr:'USD'},
-  // Axon (Q2 2026 fee — due Jul 11)
-  {c:'Axon Enterprise',      inv:'SI266000045', idate:'12/05/26', due:'11/07/26', days:0,   amt:625000.00,  curr:'USD'},
-  // Acko (LTD) — per Nofar: only open balance is $749.00 (31–60 bucket)
-  {c:'Acko',                 inv:'SI266000012', idate:'24/05/26', due:'31/05/26', days:41,  amt:749.00,    curr:'USD'},
+  // Axon (Q2 2026 fee — due Jul 11, now overdue)
+  {c:'Axon Enterprise',      inv:'SI266000045', idate:'12/05/26', due:'11/07/26', days:8,   amt:625000.00,  curr:'USD'},
+  // Acko (LTD)
+  {c:'Acko',                 inv:'SI266000012', idate:'24/05/26', due:'31/05/26', days:49,  amt:749.00,     curr:'USD'},
+  {c:'Acko',                 inv:'SI266000015', idate:'01/07/26', due:'31/07/26', days:0,   amt:349600.00,  curr:'USD'},
+  // Acko (Credit, Inc entity)
+  {c:'Acko (Credit)',        inv:'CR257000003', idate:'15/09/25', due:'15/10/25', days:277, amt:-687.00,    curr:'USD'},
   // Flywheel
-  {c:'Flywheel',             inv:'SI256000076', idate:'18/11/25', due:'18/12/25', days:205, amt:4450.00,    curr:'USD'},
-  {c:'Flywheel',             inv:'SI256000079', idate:'20/11/25', due:'20/12/25', days:203, amt:17305.00,   curr:'USD'},
-  {c:'Flywheel',             inv:'SI256000092', idate:'16/12/25', due:'15/01/26', days:177, amt:16811.00,   curr:'USD'},
-  {c:'Flywheel',             inv:'SI266000003', idate:'15/01/26', due:'14/02/26', days:147, amt:16811.00,   curr:'USD'},
-  {c:'Flywheel',             inv:'SI266000009', idate:'31/01/26', due:'02/03/26', days:131, amt:13460.00,   curr:'USD'},
-  {c:'Flywheel',             inv:'SI266000010', idate:'15/02/26', due:'17/03/26', days:116,  amt:26425.00,   curr:'USD'},
-  {c:'Flywheel',             inv:'SI266000021', idate:'18/03/26', due:'17/04/26', days:85,  amt:26195.00,   curr:'USD'},
-  {c:'Flywheel (Stripe)',    inv:'Stripe/Apr26', idate:'30/04/26', due:'30/04/26', days:72, amt:-5000.00,   curr:'USD'},
-  {c:'Flywheel',             inv:'SI266000035', idate:'16/04/26', due:'16/05/26', days:56, amt:26195.00,   curr:'USD'},
-  {c:'Flywheel (Stripe)',    inv:'BVPYMW0F-0004',idate:'26/05/26', due:'26/05/26', days:46, amt:-5000.00,   curr:'USD'},
-  {c:'Flywheel (Stripe)',    inv:'BVPYMW0F-0005',idate:'26/05/26', due:'26/05/26', days:46, amt:-5000.00,   curr:'USD'},
-  {c:'Flywheel (ADJ)',       inv:'ADJ/May26',    idate:'29/05/26', due:'29/05/26', days:43, amt:-10000.00,  curr:'USD'},
-  {c:'Flywheel',             inv:'SI266000050', idate:'25/05/26', due:'24/06/26', days:17,   amt:26195.00,   curr:'USD'},
-  // Flywheel — new June invoice (per invoice PDF)
-  {c:'Flywheel',             inv:'SI266000058', idate:'23/06/26', due:'23/07/26', days:0,   amt:26195.00,    curr:'USD'},
+  {c:'Flywheel',             inv:'SI256000076', idate:'18/11/25', due:'18/12/25', days:213, amt:4450.00,    curr:'USD'},
+  {c:'Flywheel',             inv:'SI256000079', idate:'20/11/25', due:'20/12/25', days:211, amt:17305.00,   curr:'USD'},
+  {c:'Flywheel',             inv:'SI256000092', idate:'16/12/25', due:'15/01/26', days:185, amt:16811.00,   curr:'USD'},
+  {c:'Flywheel',             inv:'SI266000003', idate:'15/01/26', due:'14/02/26', days:155, amt:16811.00,   curr:'USD'},
+  {c:'Flywheel',             inv:'SI266000009', idate:'31/01/26', due:'02/03/26', days:139, amt:13460.00,   curr:'USD'},
+  {c:'Flywheel',             inv:'SI266000010', idate:'15/02/26', due:'17/03/26', days:124, amt:26425.00,   curr:'USD'},
+  {c:'Flywheel',             inv:'SI266000021', idate:'18/03/26', due:'17/04/26', days:93,  amt:26195.00,   curr:'USD'},
+  {c:'Flywheel (Stripe)',    inv:'Stripe/Apr26', idate:'30/04/26', due:'30/04/26', days:80, amt:-5000.00,   curr:'USD'},
+  {c:'Flywheel',             inv:'SI266000035', idate:'16/04/26', due:'16/05/26', days:64, amt:26195.00,   curr:'USD'},
+  {c:'Flywheel (Stripe)',    inv:'BVPYMW0F-0004',idate:'26/05/26', due:'26/05/26', days:54, amt:-5000.00,   curr:'USD'},
+  {c:'Flywheel (Stripe)',    inv:'BVPYMW0F-0005',idate:'26/05/26', due:'26/05/26', days:54, amt:-5000.00,   curr:'USD'},
+  {c:'Flywheel (ADJ)',       inv:'ADJ/May26',    idate:'29/05/26', due:'29/05/26', days:51, amt:-10000.00,  curr:'USD'},
+  {c:'Flywheel',             inv:'SI266000050', idate:'25/05/26', due:'24/06/26', days:25,  amt:26195.00,   curr:'USD'},
+  // Flywheel — NEW: interest charge
+  {c:'Flywheel',             inv:'SI266000065', idate:'30/06/26', due:'30/06/26', days:19,  amt:7889.39,    curr:'USD'},
+  {c:'Flywheel',             inv:'SI266000058', idate:'23/06/26', due:'23/07/26', days:0,   amt:26195.00,   curr:'USD'},
   // Flywheel — FEDWIRE payment via CABCONNECT INC, 10/07/26 (partial payment against open balance)
-  {c:'Flywheel (Wire)',      inv:'FEDWIRE/Jul26', idate:'10/07/26', due:'10/07/26', days:5, amt:-30000.00,   curr:'USD'},
-  // Sony Assurance (LTD) — per Nofar: only open invoice is SI266000014
-  {c:'Sony Assurance',       inv:'SI266000014', idate:'30/06/26', due:'30/07/26', days:0,  amt:15900.00,   curr:'USD'},
+  {c:'Flywheel (Wire)',      inv:'FEDWIRE/Jul26', idate:'10/07/26', due:'10/07/26', days:9, amt:-30000.00,  curr:'USD'},
+  // Sony Assurance (LTD)
+  {c:'Sony Assurance',       inv:'SI266000014', idate:'30/06/26', due:'30/06/26', days:19,  amt:15900.00,   curr:'USD'},
   // Voyager Global
-  {c:'Voyager Global',       inv:'SI256000090', idate:'16/12/25', due:'15/01/26', days:177, amt:4278.79,    curr:'USD'},
-  {c:'Voyager Global',       inv:'SI256000091', idate:'16/12/25', due:'15/01/26', days:177, amt:1041.45,    curr:'USD'},
-  {c:'Voyager Global',       inv:'SI266000001', idate:'15/01/26', due:'14/02/26', days:147, amt:4278.79,    curr:'USD'},
-  {c:'Voyager Global',       inv:'SI266000002', idate:'15/01/26', due:'14/02/26', days:147, amt:1041.45,    curr:'USD'},
-  {c:'Voyager Global',       inv:'SI266000011', idate:'15/02/26', due:'17/03/26', days:116,  amt:4278.79,    curr:'USD'},
-  {c:'Voyager Global',       inv:'SI266000012', idate:'15/02/26', due:'17/03/26', days:116,  amt:1041.45,    curr:'USD'},
-  {c:'Voyager Global',       inv:'SI266000020', idate:'18/03/26', due:'17/04/26', days:85,  amt:4278.79,    curr:'USD'},
-  {c:'Voyager Global',       inv:'SI266000022', idate:'18/03/26', due:'17/04/26', days:85,  amt:1041.45,    curr:'USD'},
-  {c:'Voyager Global',       inv:'SI266000033', idate:'15/04/26', due:'15/05/26', days:57,  amt:4278.79,    curr:'USD'},
-  {c:'Voyager Global',       inv:'SI266000034', idate:'16/04/26', due:'16/05/26', days:56,  amt:1041.45,    curr:'USD'},
-  {c:'Voyager Global',       inv:'SI266000048', idate:'25/05/26', due:'24/06/26', days:17,   amt:4278.79,    curr:'USD'},
-  {c:'Voyager Global',       inv:'SI266000049', idate:'25/05/26', due:'24/06/26', days:17,   amt:1041.45,    curr:'USD'},
-  // Voyager Global — new June invoices
+  {c:'Voyager Global',       inv:'SI256000090', idate:'16/12/25', due:'15/01/26', days:185, amt:4278.79,    curr:'USD'},
+  {c:'Voyager Global',       inv:'SI256000091', idate:'16/12/25', due:'15/01/26', days:185, amt:1041.45,    curr:'USD'},
+  {c:'Voyager Global',       inv:'SI266000001', idate:'15/01/26', due:'14/02/26', days:155, amt:4278.79,    curr:'USD'},
+  {c:'Voyager Global',       inv:'SI266000002', idate:'15/01/26', due:'14/02/26', days:155, amt:1041.45,    curr:'USD'},
+  {c:'Voyager Global',       inv:'SI266000011', idate:'15/02/26', due:'17/03/26', days:124, amt:4278.79,    curr:'USD'},
+  {c:'Voyager Global',       inv:'SI266000012', idate:'15/02/26', due:'17/03/26', days:124, amt:1041.45,    curr:'USD'},
+  {c:'Voyager Global',       inv:'SI266000020', idate:'18/03/26', due:'17/04/26', days:93,  amt:4278.79,    curr:'USD'},
+  {c:'Voyager Global',       inv:'SI266000022', idate:'18/03/26', due:'17/04/26', days:93,  amt:1041.45,    curr:'USD'},
+  {c:'Voyager Global',       inv:'SI266000033', idate:'15/04/26', due:'15/05/26', days:65,  amt:4278.79,    curr:'USD'},
+  {c:'Voyager Global',       inv:'SI266000034', idate:'16/04/26', due:'16/05/26', days:64,  amt:1041.45,    curr:'USD'},
+  {c:'Voyager Global',       inv:'SI266000048', idate:'25/05/26', due:'24/06/26', days:25,  amt:4278.79,    curr:'USD'},
+  {c:'Voyager Global',       inv:'SI266000049', idate:'25/05/26', due:'24/06/26', days:25,  amt:1041.45,    curr:'USD'},
   {c:'Voyager Global',       inv:'SI266000059', idate:'23/06/26', due:'23/07/26', days:0,   amt:1041.45,    curr:'USD'},
   {c:'Voyager Global',       inv:'SI266000060', idate:'23/06/26', due:'23/07/26', days:0,   amt:4278.79,    curr:'USD'},
-  // ALM (Credit)
-  {c:'ALM (Credit)',         inv:'Credit/ALM',  idate:'23/06/26', due:'23/06/26', days:18,   amt:-280719.00,  curr:'USD'},
-  // CompassCom — SI266000054 ($6,596.00) and SI266000055 ($479.76) paid 17/06/26 via ACH (ref 95007288) — excluded here as closed
-  // CompassCom — new June invoice
+  // CompassCom
   {c:'CompassCom',           inv:'SI266000062', idate:'30/06/26', due:'30/07/26', days:0,   amt:479.76,     curr:'USD'},
   // Zum Services
-  {c:'Zum Services (CA)',    inv:'SI266000053', idate:'31/05/26', due:'30/06/26', days:11,   amt:3042.97,    curr:'USD'},
-  // Zum Services — new June invoice
+  {c:'Zum Services (CA)',    inv:'SI266000053', idate:'31/05/26', due:'30/06/26', days:19,  amt:3042.97,    curr:'USD'},
   {c:'Zum Services (CA)',    inv:'SI266000066', idate:'30/06/26', due:'30/07/26', days:0,   amt:3042.97,    curr:'USD'},
   // Moked Amishav (ILS · LTD)
-  {c:'Moked Amishav',        inv:'IN254000001', idate:'05/11/25', due:'05/11/25', days:248, amt:4627.10,    curr:'ILS'},
-  {c:'Moked Amishav',        inv:'IN254000002', idate:'04/12/25', due:'04/12/25', days:219, amt:4583.21,    curr:'ILS'},
-  {c:'Moked Amishav',        inv:'IN264000001', idate:'06/01/26', due:'06/01/26', days:186, amt:4471.35,    curr:'ILS'},
+  {c:'Moked Amishav',        inv:'IN254000001', idate:'05/11/25', due:'05/11/25', days:256, amt:4627.10,    curr:'ILS'},
+  {c:'Moked Amishav',        inv:'IN254000002', idate:'04/12/25', due:'04/12/25', days:227, amt:4583.21,    curr:'ILS'},
+  {c:'Moked Amishav',        inv:'IN264000001', idate:'06/01/26', due:'06/01/26', days:194, amt:4471.35,    curr:'ILS'},
   // Ten4 / Circle Star — SI266000064 ($432.00) invoiced in June, paid 10/07/26 via Chase ACH ($431.76, $0.24 short) — excluded here as closed
-  // Gocab — monthly $2,001 release payments unpaid since March 2026 (per gocab.xlsx)
-  {c:'Gocab',                inv:'Release/Mar26', idate:'31/03/26', due:'31/03/26', days:106, amt:2001.00,    curr:'USD'},
-  {c:'Gocab',                inv:'Release/Apr26', idate:'30/04/26', due:'30/04/26', days:76,  amt:2001.00,    curr:'USD'},
-  {c:'Gocab',                inv:'Release/May26', idate:'31/05/26', due:'31/05/26', days:45,  amt:2001.00,    curr:'USD'},
-  {c:'Gocab',                inv:'Release/Jun26', idate:'30/06/26', due:'30/06/26', days:15,  amt:2001.00,    curr:'USD'},
-  {c:'Gocab',                inv:'Release/Jul26', idate:'31/07/26', due:'31/07/26', days:0,   amt:2001.00,    curr:'USD'},
+  // Gocab — monthly $2,001 release payments unpaid since March 2026 (per gocab.xlsx; not tracked in Priority open-invoices export)
+  {c:'Gocab',                inv:'Release/Mar26', idate:'31/03/26', due:'31/03/26', days:110, amt:2001.00,   curr:'USD'},
+  {c:'Gocab',                inv:'Release/Apr26', idate:'30/04/26', due:'30/04/26', days:80,  amt:2001.00,   curr:'USD'},
+  {c:'Gocab',                inv:'Release/May26', idate:'31/05/26', due:'31/05/26', days:49,  amt:2001.00,   curr:'USD'},
+  {c:'Gocab',                inv:'Release/Jun26', idate:'30/06/26', due:'30/06/26', days:19,  amt:2001.00,   curr:'USD'},
+  {c:'Gocab',                inv:'Release/Jul26', idate:'31/07/26', due:'31/07/26', days:0,   amt:2001.00,   curr:'USD'},
 ];
 
 function arBucket(days) {
@@ -3098,8 +3097,34 @@ renderAprInvoices();
 renderRevRec();
 
 // ─── Zum Serial Numbers ───────────────────────────────────────────────────────
+// July 2026 invoice batch — active N1 units billed on the July subscription invoice (SI266000066)
+const ZUM_JULY_SERIALS = [
+  'N1-2030300066020','N1-2040100143318','N1-2040100148424','N1-2040100249931','N1-2040100334118',
+  'N1-2040100346222','N1-2040100424118','N1-2040100440722','N1-2040100444322','N1-2040100482526',
+  'N1-2040100488734','N1-2040100491425','N1-2040100491829','N1-2040100512722','N1-2040100520620',
+  'N1-2040100544929','N1-2040100575832','N1-2040100602116','N1-2040100605321','N1-2040100620015',
+  'N1-2040100648126','N1-2040101565630','N1-2040101594632','N1-2040101619933','N1-2040101641928',
+  'N1-2040101679939','N1-2040101698839','N1-2040200037624','N1-2040200038322','N1-2040200039222',
+  'N1-2060100956635','N1-4040100000514','N1-4040100001414','N1-4040100013114','N1-4040100035522',
+  'N1-4040100035825','N1-4040100049931','N1-4040100051722','N1-4040100055827','N1-4040100058729',
+  'N1-4040100059326','N1-4040100061723','N1-4040100079126','N1-4040100079631','N1-4040100081018',
+  'N1-4040100081927','N1-4040100093021','N1-4040100093930','N1-4040100095326','N1-4040100100717',
+  'N1-4040100109221','N1-4040100109625','N1-4040100112114','N1-4040100116421','N1-4040100117018',
+  'N1-4040100120416','N1-4040100124218','N1-4040100125421','N1-4040100130215','N1-4040100137020',
+  'N1-4040100138122','N1-4040100142420','N1-4040100154221','N1-4040100166729','N1-4040100176124',
+  'N1-4040100176528','N1-4040100183223','N1-4040100185124','N1-4040100186529','N1-4040100188127',
+  'N1-4040100188430','N1-4040100188935','N1-4040100189128','N1-4040100190423','N1-4040100190827',
+  'N1-4040100190928','N1-4040100194326','N1-4040100195226','N1-4040100196126','N1-2040100297227',
+  'N1-2040101189733','N1-2040100289228','N1-1111100004312','N1-2040101104114','N1-2040101089833',
+  'N1-2030400003214','N1-2030300052116','N1-2030300074928','N1-2030300079731','N1-2030700013622',
+  'N1-2030100002715','N1-2040100325825','N1-2040100449024',
+];
 function renderZumSerials() {
-  const data = JSON.parse(localStorage.getItem('zum_serials') || '[]');
+  const imported = JSON.parse(localStorage.getItem('zum_serials') || '[]');
+  const julySet = new Set(ZUM_JULY_SERIALS);
+  const julyRows = ZUM_JULY_SERIALS.map(s => ({serial:s, model:'N1', batch:'Jul26'}));
+  const extraRows = imported.filter(s => !julySet.has(s.serial));
+  const data = julyRows.concat(extraRows);
   const tbody = document.getElementById('zum-serials');
   if (!data.length) {
     tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:var(--muted);padding:24px;font-size:13px">No serial numbers added yet — paste serials below to import</td></tr>';
@@ -3108,7 +3133,7 @@ function renderZumSerials() {
   tbody.innerHTML = data.map((s, i) => `<tr>
     <td class="cm" style="font-size:11px">${i+1}</td>
     <td style="font-family:monospace;font-size:12px;font-weight:600">${s.serial}</td>
-    <td class="cm">${s.model||'N1'}</td>
+    <td class="cm">${s.model||'N1'}${s.batch ? ' · '+s.batch : ''}</td>
   </tr>`).join('');
 }
 
